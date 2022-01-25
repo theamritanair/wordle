@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState, useEffect } from "react";
+import Canvas from "./components/Canvas"
+import { Keyboard } from "./components/Keyboard";
 function App() {
+  const [letterLength, setLetterLength] = useState(5)
+  const [currentTry, setCurrentTry] = useState("");
+  const [attempts, setAttempts] = useState([])
+  const [secret, setSecret] = useState("")
+  let list = [
+    'horse',
+    'patio',
+    'crown',
+    'jewel',
+    'robot',
+    'point'
+  ]
+  
+  useEffect(()=>{
+    setSecret(list[Math.floor(Math.random()* list.length)])
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Wordle</h1>
+      {/* choose letter length dialog */}
+      <Canvas
+        letterLength={letterLength}
+        attempts ={attempts}
+        currentTry= {currentTry}
+        setCurrentTry={setCurrentTry}
+        setAttempts={setAttempts}
+        list={list}
+        secret={secret}
+      />
+      <Keyboard />
     </div>
   );
 }
