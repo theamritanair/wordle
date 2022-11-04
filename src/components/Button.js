@@ -1,6 +1,6 @@
-export const Button = ({ content }) => {
+export const Button = ({ handleKeyClick, content }) => {
   return (
-    <div className="button" style={{ height: 20 }}>
+    <div onClick={handleKeyClick} className="button" style={{ height: 20 }}>
       {content}
     </div>
   );

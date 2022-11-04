@@ -7,19 +7,28 @@ function App() {
   const [secret, setSecret] = useState("");
   let list = ["horse", "patio", "crown", "jewel", "robot", "point"];
 
+  const [currentTry, setCurrentTry] = useState("");
   useEffect(() => {
     setSecret(list[Math.floor(Math.random() * list.length)]);
     //eslint-disable-next-line
   }, []);
 
+  let secretMap = new Map();
+  secret.split("").map((ch) => {
+    secretMap.set(ch, (secretMap[ch] || 0) + 1);
+    return secretMap;
+  });
+
   return (
     <div className="App">
       <h1>Wordle</h1>
       {/* choose letter length dialog */}
-      <SecretContext.Provider value={secret}>
+      <SecretContext.Provider
+        value={{ secret, secretMap, currentTry, setCurrentTry }}
+      >
         <Canvas letterLength={letterLength} list={list} />
+        <Keyboard />
       </SecretContext.Provider>
-      <Keyboard />
     </div>
   );
 }

@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SecretContext } from "../App";
 import { Try } from "./Try";
 export default function Canvas({ letterLength, list }) {
+  const { currentTry, setCurrentTry } = useContext(SecretContext);
+
   useEffect(() => {
     // console.log(`Current state is ${currentTry}`)
     window.addEventListener("keydown", update);
     return () => window.removeEventListener("keydown", update);
   });
-  const [currentTry, setCurrentTry] = useState("");
   const [attempts, setAttempts] = useState([]);
 
   function update(e) {
@@ -35,7 +37,6 @@ export default function Canvas({ letterLength, list }) {
   const rows = [];
   for (let i = 0; i < 6; i++) {
     if (i < attempts.length) {
-      console.log(i);
       rows.push(
         <Try
           letterLength={letterLength}
