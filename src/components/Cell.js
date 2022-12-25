@@ -1,7 +1,7 @@
-export const Cell = ({ letter, color, solved }) => {
+export const Cell = ({ letter, color, solved, className }) => {
   return (
     <div
-      className="cell"
+      className={`cell ${className}`}
       style={{
         backgroundColor: solved ? color : "#111",
       }}

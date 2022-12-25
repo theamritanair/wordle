@@ -4,7 +4,6 @@ import { Button } from "./Button";
 
 export const KeyboardLine = ({ letters }) => {
   const { currentTry, setCurrentTry } = useContext(SecretContext);
-  console.log(currentTry);
   let rows = [];
   letters
     .split("")

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { SecretContext } from "../App";
 import { Cell } from "./Cell";
-export const Try = ({ letterLength, attempt, solved }) => {
+export const Try = ({ letterLength, attempt, solved, currentRowAnimate }) => {
   const { secret } = useContext(SecretContext);
 
   function getBgColor(attempt, index) {
@@ -23,6 +23,7 @@ export const Try = ({ letterLength, attempt, solved }) => {
         letter={attempt[i]}
         solved={solved}
         color={getBgColor(attempt, i)}
+        className={`${currentRowAnimate}`}
       />
     );
   }
@@ -30,7 +31,7 @@ export const Try = ({ letterLength, attempt, solved }) => {
     <div
       style={{
         display: "flex",
-        "justifyContent": "center",
+        justifyContent: "center",
       }}
     >
       {cells}
